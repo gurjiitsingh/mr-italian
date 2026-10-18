@@ -6,43 +6,12 @@ import { fetchAddOnProducts } from "@/app/(universal)/action/productsaddon/dbOpe
 import { fetchProducts } from "@/app/(universal)/action/products/dbOperation";
 import { ProductType } from "@/lib/types/productType";
 import { addOnType } from "@/lib/types/addOnType";
+import  Card  from "../level-2/ProductMenuCard-h1_4";
 import dynamic from "next/dynamic";
 // Pick card based on .env
-let Card: React.ComponentType<any>;
+ 
 const cardType = process.env.NEXT_PUBLIC_PRODUCT_CARD_TYPE;
-switch (cardType) {
-  case "1":
-    Card = dynamic(() => import("../level-2/ProductCard-h1")); // horizontal
-    break;
-     case "11":
-    Card = dynamic(() => import("../level-2/ProductMenuCard-h1_5")); // horizontal
-    break;
-      case "21":
-    Card = dynamic(() => import("../level-2/ProductCard-h12")); // horizontal
-    break;
 
-  case "2":
-    Card = dynamic(() => import("../level-2/ProductCard-v2")); // horizontal
-    break;
-  case "3":
-    Card = dynamic(() => import("../level-2/ProductCard-v3")); // horizontal
-    break;
-
-  case "4":
-    Card = dynamic(() => import("../level-2/ProductCard-v4")); // horizontal
-    break;
-  case "5":
-    Card = dynamic(() => import("../level-2/ProductCard-v5")); // horizontal
-    break;
-  case "6":
-    Card = dynamic(() => import("../level-2/ProductCard-h6")); // vertical
-    break;
-  case "7":
-    Card = dynamic(() => import("../level-2/ProductCard-v7")); // vertical
-    break;
-  default:
-    Card = dynamic(() => import("../level-2/ProductCard-h1")); // vertical
-}
 export default function ProductsMenu() {
   const { productCategoryIdG, settings, setAllProduct, productToSearchQuery } =
     UseSiteContext();

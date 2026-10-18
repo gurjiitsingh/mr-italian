@@ -5,6 +5,7 @@ import { UseSiteContext } from "@/SiteContext/SiteContext";
 import dynamic from "next/dynamic";
 import { ProductType } from "@/lib/types/productType";
 import { addOnType } from "@/lib/types/addOnType";
+import  Card  from "../level-2/ProductCard-h1_1_1";
 //import ProdcutCardHorizontical19 from "../custom/cus-componets/ProductCard-h19"
 
 // export type ProductType = {
@@ -36,14 +37,7 @@ const [productModifiers, setProductModifiers] = useState<any[]>([]);
 
   //  DYNAMIC IMPORT — SAFE, NO RERENDER LOOP
 
-  const Card = useMemo(() => {
-    switch (cardType) {
-     
-      case "111":
-        return dynamic(() => import("../level-2/ProductCard-h1_1_1"));
-     
-    }
-  }, [cardType]);
+  
 
   //  Set initial category (runs only when settings OR global id changes)
 

@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { addOnType } from "@/lib/types/addOnType";
 import { ProductType } from "@/lib/types/productType";
-
+import  Card  from "../level-2/ProductMenuCard-h1_4";
 
 
 export default function ProductMenuList() {
@@ -49,41 +49,7 @@ const [addOns, setAddOns] = useState<addOnType[]>([]);
 
 const cardType = process.env.NEXT_PUBLIC_MENU_CARD_TYPE;
 
-   const Card = useMemo(() => {
-      switch (cardType) {
-        case "1":
-          return dynamic(() => import("../level-2/ProductCard-h1"));
-           case "11":
-          return dynamic(() => import("../level-2/ProductCard-h1_1"));
-        case "13":
-          return dynamic(() => import("../level-2/ProductCard-h1_3"));
-  
-        case "14":
-          return dynamic(() => import("../level-2/ProductMenuCard-h1_4"));
-        case "15":
-          return dynamic(() => import("../level-2/ProductMenuCard-h1_5"));
-        case "12":
-          return dynamic(
-            () => import("@/custom/cus-components/ProductCard-custom")
-          );
-        case "19":
-          return dynamic(() => import("../level-2/ProductCard-h12"));
-        case "2":
-          return dynamic(() => import("../level-2/ProductCard-v2"));
-        case "3":
-          return dynamic(() => import("../level-2/ProductCard-v3"));
-        case "4":
-          return dynamic(() => import("../level-2/ProductCard-v4"));
-        case "5":
-          return dynamic(() => import("../level-2/ProductCard-v5"));
-        case "6":
-          return dynamic(() => import("../level-2/ProductCard-h6"));
-        case "7":
-          return dynamic(() => import("../level-2/ProductCard-v7"));
-        default:
-          return dynamic(() => import("../level-2/ProductCard-h1"));
-      }
-    }, [cardType]);
+ 
 
 
     //  Layout logic (unchanged)
