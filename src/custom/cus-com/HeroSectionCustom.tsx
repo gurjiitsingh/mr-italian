@@ -137,7 +137,7 @@ export default function HeroSectionCustom() {
               {/* Top Right: hero-3.jpg */}
               <div className="relative aspect-square overflow-hidden rounded-2xl border-2 border-[#f7c82d]/50 shadow-lg group">
                 <Image
-                  src="/images/hero-3.jpg"
+                  src="/images/butter-chicken.jpg"
                   alt="Butter Chicken Handi"
                   fill
                   priority
@@ -152,7 +152,7 @@ export default function HeroSectionCustom() {
               {/* Bottom Left: hero-9.jpg */}
               <div className="relative aspect-square overflow-hidden rounded-2xl border-2 border-[#f7c82d]/50 shadow-lg group">
                 <Image
-                  src="/images/hero-11.jpg"
+                  src="/images/hero-15.jpg"
                   alt="Italian Pasta & Chinese"
                   fill
                   sizes="(max-width: 768px) 50vw, 220px"
