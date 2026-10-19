@@ -82,14 +82,14 @@ Martes Estamos Cerrado"
 
         {/* Google Map Section */}
         <div className="google_map w-full md:w-[50%]">
-         <iframe
+         {/* <iframe
   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.7769972830206!2d2.1781470999999994!3d41.42235929999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bd2cecc1d093%3A0x19a41736bcc7bbb!2sCarrer%20del%20Segle%20XX%2C%209%2C%20Horta-Guinard%C3%B3%2C%2008041%20Barcelona%2C%20Spain!5e0!3m2!1sen!2sin!4v1774751413429!5m2!1sen!2sin"
   width="100%"
   height="450"
   style={{ border: 0 }}
   loading="lazy"
   referrerPolicy="no-referrer-when-downgrade"
-></iframe>
+></iframe> */}
         </div>
       </div>
     </div>

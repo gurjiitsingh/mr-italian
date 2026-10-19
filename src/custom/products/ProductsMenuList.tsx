@@ -5,7 +5,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { addOnType } from "@/lib/types/addOnType";
 import { ProductType } from "@/lib/types/productType";
-import  Card  from "../level-2/ProductMenuCard-h1_4";
+import ProdcutCardHorizontical from "./ProductMenuCard-h1_5";
+ 
 
 
 export default function ProductMenuList() {
@@ -47,45 +48,10 @@ const [addOns, setAddOns] = useState<addOnType[]>([]);
     }
   };
 
-const cardType = process.env.NEXT_PUBLIC_MENU_CARD_TYPE;
-
- 
 
 
-    //  Layout logic (unchanged)
-  let containerClass = "";
-  switch (cardType) {
-    case "1":
-      containerClass = "flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-5 ";
-      break;
-    case "11":
-      containerClass = "flex flex-col md:flex-row md:flex-wrap gap-2 md:gap-2";
-      break;
-    case "12":
-      containerClass = "flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-5";
-      break;
-    case "2":
-    case "3":
-      containerClass =
-        "flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-5 justify-center";
-      break;
-    case "4":
-      containerClass = "grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3";
-      break;
-    case "5":
-      containerClass = "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3";
-      break;
-    case "6":
-      containerClass = "flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-5";
-      break;
-    case "7":
-      containerClass = "grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3";
-      break;
-    default:
-      containerClass = "flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-5";
-  }
 
-
+let containerClass = "flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-5";
   return (
     <section className="bg-white py-6  ">
       {/* Sticky Category Bar */}
@@ -116,15 +82,15 @@ const cardType = process.env.NEXT_PUBLIC_MENU_CARD_TYPE;
             {/* Product Grid */}
            <div id="bf" className="max-w-6xl mx-auto my-6">
       <div className="px-2">
-        <div className={containerClass}>
+         <div className={containerClass}>
               {products.map((product, i) => (
-            <Card
+            <ProdcutCardHorizontical
               key={product.id ?? `${product.name}-${i}`}
               product={product}
               allAddOns={addOns}
             />
           ))}
-            </div>
+            </div> 
   </div>  </div>
 
 

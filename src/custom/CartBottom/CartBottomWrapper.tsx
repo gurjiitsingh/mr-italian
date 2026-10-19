@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CartBottom from "@/components/CartBottom/CartBottom";
+import CartBottom from "@/custom/CartBottom/CartBottom";
 
 export default function CartBottomWrapper() {
   const [cartBottomEnabled, setCartBottomEnabled] = useState(false);

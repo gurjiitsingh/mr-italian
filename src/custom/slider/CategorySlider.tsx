@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { UseSiteContext } from "@/SiteContext/SiteContext";
 import { Lato, Poppins } from "next/font/google";
-import Link from "next/link";
 
-//  Category type definition
+// Category type definition
 export type CategoryType = {
   id: string;
   name: string;
@@ -19,17 +18,7 @@ export type CategoryType = {
   disablePickupDiscount?: boolean;
 };
 
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
-
-export default function CategorySliderLightRound() {
+export default function CategorySlider() {
   const [categoryData, setCategoryData] = useState<CategoryType[]>([]);
   const [displayCategory, setDisplayCategory] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -41,9 +30,7 @@ export default function CategorySliderLightRound() {
     settings,
   } = UseSiteContext();
 
-  //  Handle displayCategory selection
-
-
+  // Handle displayCategory selection
   useEffect(() => {
     if (!productCategoryIdG) {
       setDisplayCategory(settings.display_category?.toString() ?? null);
@@ -52,7 +39,7 @@ export default function CategorySliderLightRound() {
     }
   }, [settings, productCategoryIdG]);
 
-  //  Fetch categories
+  // Fetch categories
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -76,13 +63,10 @@ export default function CategorySliderLightRound() {
       }
     };
 
-
-
     fetchData();
   }, []);
 
-
-  //  Scroll handler
+  // Scroll handler
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -96,71 +80,79 @@ export default function CategorySliderLightRound() {
   };
 
   return (
-    <div id="order_now" className="scroll-mt-24 relative max-w-[1700px] mx-auto  px-14 sm:px-6 lg:px-12 mb-7 mt-20">
-      {/* Arrows */}
+    <div id="order_now" className="scroll-mt-24 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 my-8">
+      {/* Scroll Arrows */}
       <button
         onClick={() => scroll("left")}
-        className="absolute opacity-[65%] left-0 top-[37%] -translate-y-1/2 z-10 bg-gray-300 text-white p-2 sm:p-3 rounded-full  transition shadow-md"
+        className="absolute left-1 sm:left-3 top-[48%] -translate-y-1/2 z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-[#f7c82d]/40 bg-[#0c241b]/90 text-[#f7c82d] shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-[#f7c82d] hover:text-black hover:shadow-[0_0_20px_rgba(247,200,45,0.4)]"
         aria-label="Scroll Left"
       >
-        <FaChevronLeft className="text-sm sm:text-base" />
+        <FaChevronLeft className="text-xs sm:text-sm" />
       </button>
 
       <button
         onClick={() => scroll("right")}
-        className="absolute opacity-[65%] right-0 top-[37%] -translate-y-1/2 z-10 bg-gray-300 text-white p-2 sm:p-3 rounded-full  transition shadow-md"
+        className="absolute right-1 sm:right-3 top-[48%] -translate-y-1/2 z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-[#f7c82d]/40 bg-[#0c241b]/90 text-[#f7c82d] shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-[#f7c82d] hover:text-black hover:shadow-[0_0_20px_rgba(247,200,45,0.4)]"
         aria-label="Scroll Right"
       >
-        <FaChevronRight className="text-sm sm:text-base" />
+        <FaChevronRight className="text-xs sm:text-sm" />
       </button>
 
       {/* Category scroll area */}
       <div
         ref={scrollRef}
-        className="flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide justify-start px-0"
+        className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide justify-start px-1 py-2"
       >
         {categoryData.length > 0 ? (
           categoryData.map((category) => {
             const isActive = displayCategory === category.id;
             return (
               <div key={category.id} className="flex-shrink-0 snap-start">
-              <Link
-  href={`/products/category/${category.id}`}
-  className="group w-[120px] sm:w-[140px] py-2 flex flex-col items-center justify-start gap-4 bg-white rounded-xl transition-all duration-300 ease-in-out"
->
+                <button
+                  onClick={() => setProductCategoryIdG(category.id)}
+                  className={`group w-[120px] sm:w-[140px] h-[175px] rounded-2xl p-2.5 transition-all duration-300 ease-in-out flex flex-col items-center justify-start gap-3 backdrop-blur-md ${
+                    isActive
+                      ? "bg-gradient-to-b from-[#143d2c] to-[#0c241b] border-2 border-[#f7c82d] shadow-[0_0_25px_rgba(247,200,45,0.3)] scale-[1.03]"
+                      : "bg-[#091f17]/90 border border-[#f7c82d]/25 hover:border-[#f7c82d]/60 hover:bg-[#103023] hover:shadow-[0_0_15px_rgba(247,200,45,0.15)]"
+                  }`}
+                >
                   <div
-                    className={`${isActive
-                      ? "relative rounded-full overflow-hidden bg-gray-100 border-2 border-slate-300 shadow-lg"
-                      : "relative rounded-full overflow-hidden bg-gray-100 shadow-md"
-                      } w-[95px] h-[95px] sm:w-[110px] sm:h-[110px]`}
+                    className={`w-full h-[100px] sm:h-[110px] relative rounded-xl overflow-hidden bg-emerald-950/60 border ${
+                      isActive
+                        ? "border-[#f7c82d] shadow-inner"
+                        : "border-[#f7c82d]/20"
+                    }`}
                   >
                     <img
                       src={category.image || "/com.jpg"}
                       alt={category.name || "Category"}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
 
                   <span
-                    className={`text-center text-[15px] font-semibold leading-snug px-1 ${isActive
-                        ? "text-zinc-700"
-                        : "text-slate-500 group-hover:text-slate-400"
-                      }`}
+                    className={`text-center text-[13px] sm:text-[14px] font-bold leading-snug font-serif tracking-wide transition-colors ${
+                      isActive
+                        ? "text-[#f7c82d] drop-shadow-[0_1px_8px_rgba(247,200,45,0.4)]"
+                        : "text-stone-200 group-hover:text-[#f7c82d]"
+                    }`}
                   >
                     {category.name}
                   </span>
-                </Link>
+                </button>
               </div>
             );
-
           })
         ) : (
           // Skeleton Loader
-          [...Array(4)].map((_, i) => (
+          [...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="w-[130px] h-[150px] bg-gray-100 animate-pulse rounded-xl flex-shrink-0 snap-start"
-            />
+              className="w-[120px] sm:w-[140px] h-[175px] bg-[#091f17]/80 border border-[#f7c82d]/15 animate-pulse rounded-2xl flex-shrink-0 snap-start p-2.5 flex flex-col items-center gap-3"
+            >
+              <div className="w-full h-[100px] sm:h-[110px] rounded-xl bg-emerald-950/50" />
+              <div className="w-3/4 h-3 rounded-full bg-[#f7c82d]/20 mt-1" />
+            </div>
           ))
         )}
       </div>

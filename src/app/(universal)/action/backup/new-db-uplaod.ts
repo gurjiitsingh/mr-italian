@@ -356,7 +356,7 @@ if (missingColumns.length > 0) {
 
         discountEligible: true,
         discountPrice: 0,
-
+        type: "parent",
         // Actual Firestore category document ID.
         categoryId: product.categoryId,
 
@@ -505,7 +505,7 @@ if (missingColumns.length > 0) {
         price: product.price,
 
         quantity: null,
-
+         type: "parent",
         discountEligible: true,
         discountPrice: 0,
 

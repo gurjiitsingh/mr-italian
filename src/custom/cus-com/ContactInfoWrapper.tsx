@@ -1,7 +1,7 @@
 import { getCachedOutlet } from "@/lib/outlet/getCachedOutlet";
 import { getSchedule } from "@/app/(universal)/action/schedule/saveDaySchedule";
 
-import ContactInfo from "@/custom/cus-components/ContactInfo";
+import ContactInfo from "@/custom/cus-com/ContactInfo";
 
 export default async function ContactInfoWrapper() {
   // ✅ use cached outlet (IMPORTANT)

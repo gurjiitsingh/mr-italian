@@ -9,9 +9,7 @@ import { ProductType } from "@/lib/types/productType";
 import { addOnType } from "@/lib/types/addOnType";
 import { IoMdAdd } from "react-icons/io";
 import toast from "react-hot-toast";
-import AddOn from "../level-1/AddOn";
 import { formatCurrencyNumber } from "@/utils/formatCurrency";
-import CartButtonAdd from "../AddToCart/CartButtonAdd";
 import { Lato } from "next/font/google";
 
 const lato = Lato({
@@ -29,15 +27,16 @@ import {
   Leaf,
   CircleHelp,
 } from "lucide-react";
+import { FaFireAlt, FaHeart, FaLeaf, FaSmile } from "react-icons/fa";
 
-export default function ProductCardForSlider({
+export default function ProductCardPrductOfMonth({
   product,
  
 }: {
   product: ProductType;
   
 }) {
- 
+
   const {  settings } = UseSiteContext();
  
 
@@ -53,7 +52,7 @@ export default function ProductCardForSlider({
 
   const priceRegular = formatCurrencyNumber(
   product.price ?? 0,       // numeric value
-  (settings.currency ) as string,
+    (settings.currency ) as string,
       (settings.locale ) as string
 );
 
@@ -94,64 +93,44 @@ export default function ProductCardForSlider({
 
   //common code end
   return (
- <div
-            key={product.id}
-            className="min-w-[250px] bg-white rounded-3xl border border-[#f3e6dc] shadow-[0_2px_4px_rgba(0,0,0,0.05)] hover:shadow-md transition-all flex-shrink-0 p-5"
-          >
-            {/* Product Header (Optional Image Removed) */}
-            {/* <div className="w-full h-32 rounded-xl overflow-hidden bg-gray-100 mb-3">
-              {product.image ? (
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-gray-200" />
-              )}
-            </div> */}
+  <div
+                key={product.id}
+                className=" w-[240px] sm:min-w-[280px] md:min-w-[300px] flex-shrink-0 snap-center"
+              >
+                <div className="relative bg-white  rounded-2xl  transition px-3 pt-3 pb-0">
+                  {/* Discount badge */}
+                  {/* {product.discountPrice && (
+                    <div className="absolute top-2 right-2 bg-[#8b0000] text-white text-[10px] sm:text-xs px-0 py-1 rounded-md font-semibold">
+                      -
+                      {Math.round(
+                        100 - (product.discountPrice / product.price) * 100
+                      )}
+                      %
+                    </div>
+                  )} */}
 
-            {/* Product Name */}
-            <h3
-              className={`${lato.className} font-bold text-[#000000] text-[18px] leading-tight tracking-wide`}
-              style={{
-                fontFamily: `'Lato', sans-serif`,
-              }}
-            >
-              {product.name}
-            </h3>
+                  <button className="text-left w-full">
+                    <h3
+                      className={`${lato.className} w-full   text-xl font-bold sm:text-lg text-[#2B2E4A] mb-0`}
+                    >
+                      {product.name}
+                    </h3>
+                    {/* <p className="italic text-gray-500 text-xs sm:text-sm mb-1">
+                      Empfehlung vom Chefkoch
+                    </p> */}
 
-            {/* Icons Row (Visual Feature Line) */}
-            <div className="flex items-center gap-2 mt-2 text-gray-600 text-sm">
-              <CircleHelp size={16} />
-              <Flame size={16} />
-              <Utensils size={16} />
-              <Leaf size={16} />
-            </div>
+                    <div className="flex items-center gap-2 text-[#d24a0f] text-xs mb-0">
+                      <FaFireAlt /> <FaLeaf /> 🌶️
+                    </div>
 
-            {/* Description */}
-            <p className="text-sm text-gray-600 mt-1 italic line-clamp-2 max-w-[250px]">
-              {product.productDesc || "Leckeres Gericht mit frischen Zutaten"}
-            </p>
+                    <p className=" w-full h-[60px] text-gray-700 text-xs sm:text-[13spx] leading-snug mb-0">
+                      {product.productDesc || "Leckeres Gericht des Monats"}
+                    </p>
 
-            {/* Price Row */}
-            <div className="mt-3 flex items-center justify-between">
-              <div className="text-base font-bold text-[#d24a0f] flex items-center gap-1">
-                {/* {product.discountPrice ? (
-                  <>
-                    <span className="line-through text-gray-400 text-sm">
-                      {product.price}€
-                    </span>
-                    {product.discountPrice}€
-                  </>
-                ) : (
-                  `${product.price}€`
-                )} */}
-
-
-  {product.discountPrice !== undefined &&
+                    {/* Price */}
+                   
+<div className="w-full flex justify-end">
+                      {product.discountPrice !== undefined &&
               product.discountPrice > 0 ? (
                 <div className="text-base font-bold text-[#d24a0f] flex items-center gap-1">
                   {" "}
@@ -162,16 +141,24 @@ export default function ProductCardForSlider({
                   </div>
               ) : (
                 <div className="text-base font-bold text-[#d24a0f] flex items-center gap-1">{priceRegular}</div>
-              )}
+              )}</div>
 
+                   
+                  </button>
+                </div>
+                <div className="">
+ {/* Reactions */}
+                    <div className="flex items-center gap-3 px-2  mt-[-1px] text-xs sm:text-sm">
+                      <span className="flex items-center gap-1 text-gray-600 bg-white p-1 rounded-b-lg">
+                        <FaHeart className="text-[#d24a0f]" /> 41
+                      </span>
+                      <span className="flex items-center gap-1 text-gray-600 bg-white p-1 rounded-b-lg">
+                        <FaSmile className="text-[#d24a0f]" /> 13
+                      </span>
+                    </div>
+
+                </div>
               </div>
-
-              <Info
-                size={18}
-                className="text-gray-400 hover:text-[#d24a0f] cursor-pointer transition"
-              />
-            </div>
-          </div>
   );
 }
 

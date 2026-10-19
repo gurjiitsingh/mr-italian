@@ -9,9 +9,9 @@ import {
   Flame 
 } from 'lucide-react';
 
-export default function HeroSectionMrItalian() {
+export default function HeroSectionCustom() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#0c241b] text-white pt-10 pb-16 selection:bg-[#f7c82d] selection:text-black">
+    <section className="relative min-h-screen overflow-hidden bg-[#0c241b] text-white pt-20 pb-16 selection:bg-[#f7c82d] selection:text-black">
       {/* Background radial textures and subtle glows */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#194d38_0%,_#0c241b_60%,_#06140e_100%)] opacity-90" />
       <div className="pointer-events-none absolute -left-20 top-24 h-96 w-96 rounded-full bg-[#f7c82d]/10 blur-[130px]" />
@@ -152,7 +152,7 @@ export default function HeroSectionMrItalian() {
               {/* Bottom Left: hero-9.jpg */}
               <div className="relative aspect-square overflow-hidden rounded-2xl border-2 border-[#f7c82d]/50 shadow-lg group">
                 <Image
-                  src="/images/hero-9.jpg"
+                  src="/images/hero-11.jpg"
                   alt="Italian Pasta & Chinese"
                   fill
                   sizes="(max-width: 768px) 50vw, 220px"
@@ -166,7 +166,7 @@ export default function HeroSectionMrItalian() {
               {/* Bottom Right: hero-7.jpg */}
               <div className="relative aspect-square overflow-hidden rounded-2xl border-2 border-[#f7c82d]/50 shadow-lg group">
                 <Image
-                  src="/images/hero-7.jpg"
+                  src="/images/hero-14.jpg"
                   alt="Cheesy Pizza"
                   fill
                   sizes="(max-width: 768px) 50vw, 220px"

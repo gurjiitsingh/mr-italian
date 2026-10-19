@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { UseSiteContext } from "@/SiteContext/SiteContext";
 import dynamic from "next/dynamic";
-import Navbar from "@/components/level-2/Navbar";
+import Navbar from "@/custom/menu/Navbar";
 import Login from "../../components/buttons/Login";
 import { LanguageSwitcher } from "../../languages/LanguageSwitcher";
 

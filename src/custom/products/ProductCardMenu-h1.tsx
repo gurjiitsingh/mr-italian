@@ -9,20 +9,14 @@ import { ProductType } from "@/lib/types/productType";
 import { addOnType } from "@/lib/types/addOnType";
 import { IoMdAdd } from "react-icons/io";
 import toast from "react-hot-toast";
-import AddOn from "../level-1/AddOn";
+
 import { formatCurrencyNumber } from "@/utils/formatCurrency";
-import CartButtonAdd from "../AddToCart/CartButtonAdd";
+import CartButtonAdd from "@/components/AddToCart/CartButtonAdd";
+import AddOn from "@/components/level-1/AddOn";
+ 
 
-// import { Bricolage_Grotesque } from "next/font/google";
 
-// const bricolage = Bricolage_Grotesque({
-//   subsets: ["latin"],
-//   weight: ["400", "500", "600", "700"], // choose what weights you need
-//   display: "swap",
-// });
-// ${bricolage.className}
-
-export default function ProdcutCardHorizontical({
+export default function MenuCard({
   product,
   allAddOns,
 }: {
@@ -46,35 +40,41 @@ export default function ProdcutCardHorizontical({
 
   //common code start
 
-  const priceRegular = formatCurrencyNumber(
-      product.price ?? 0,
-      (settings.currency || "EUR") as string,
-      (settings.locale || "de-DE") as string
-    );
-    let priceDiscounted;
-    let priceTarget = product.price ?? 0;
-    if (product.discountPrice && product.discountPrice > 0) {
-      priceTarget = product.discountPrice;
-      // priceDiscounted = product.discountPrice.toString().replace (/\./g, ",");
-      priceDiscounted = formatCurrencyNumber(
-        product.discountPrice,
-        (settings.currency || "EUR") as string,
-        (settings.locale || "de-DE") as string
-      );
-    }
+  //const priceRegular = product.price?.toString().replace (/\./g, ",") ?? "0,00";
+  // const priceRegular = formatCurrencyNumber(
+  //   product.price ?? 0,
+  //   (settings.currency || "EUR") as string,
+  //   (settings.locale || "de-DE") as string
+  // );
 
- 
+  const priceRegular = formatCurrencyNumber(
+  product.price ?? 0,       // numeric value
+  (settings.currency) as string,
+      (settings.locale) as string
+);
+
+  let priceDiscounted;
+  let priceTarget = product.price ?? 0;
+  if (product.discountPrice && product.discountPrice > 0) {
+    priceTarget = product.discountPrice;
+    // priceDiscounted = product.discountPrice.toString().replace (/\./g, ",");
+    priceDiscounted = formatCurrencyNumber(
+      product.discountPrice,
+      (settings.currency) as string,
+      (settings.locale) as string
+    );
+  }
 
   const cartProduct: cartProductType = {
     id: product.id,
     quantity: 1,
-    currentStock:product.currentStock!,
+    currentStock :product.currentStock!,
     price: priceTarget,
     name: product.name,
     image: product.image,
     categoryId: product.categoryId,
     productCat: product.productCat!,
-    taxRate: product.taxRate,
+   taxRate: product.taxRate,
     taxType: product.taxType,
     
   };
@@ -90,9 +90,9 @@ export default function ProdcutCardHorizontical({
 
   //common code end
   return (
-    <div className={` bg-white w-full  border-b border-slate-200    flex flex-row    items-center p-1 `}>
-      <div className="rounded-lg  flex items-center justify-center w-[120px]   md:w-[150px]    overflow-hidden">
-             {product.image && (
+    <div className="bg-white w-full  lg:w-[49%]    shadow-md flex flex-row   rounded-xl items-center p-1">
+      <div className="rounded-lg border-1 border-slate-100 flex items-center justify-center w-[120px]   md:w-[150px]    overflow-hidden">
+        {product.image && (
           <img
             src={product.image}
             alt={product.name}
@@ -103,40 +103,44 @@ export default function ProdcutCardHorizontical({
 
       <div className="w-full flex flex-col pl-3 justify-between">
         <div className="w-full flex-col gap-4 justify-between ">
-          <div className="w-full flex gap-1  justify-between ">
-            <div className="flex text-gray-600 text-sm font-sami-bold items-start justify-start  min-w-[180px] ">
+          <div className="w-full flex gap-1 mb-2 justify-between ">
+            <div className="flex text-gray-600 font-sami-bold items-start justify-start  min-w-[180px] ">
            {/* product-card-add-title-cover-1 */}
               {/* {productCategoryIdG !== "" && <>{product.sortOrder}.&nbsp;</>} */}
               {product.name}
             </div>
-        
+          {product.currentStock! >0 ? <>
+          <div className="text-gray-600 font-sami-bold"> {product.currentStock} in stock</div>
+          </> : <>
+           <div className="text-slate-500 font-sami-bold">  Out of stock</div>
+          </>}  
           </div>
 
           {/* <button onClick={() => alert(product.productDesc)}> */}
 
           <button
-            // onClick={() =>
-            //  // alert(product.productDesc ?? "Keine Beschreibung verfügbar")
-            // }
-            className="text-sm text-[#736d6f] font-light text-left   overflow-hidden"
+            onClick={() =>
+              alert(product.productDesc ?? "Keine Beschreibung verfügbar")
+            }
+            className="text-sm text-gray-500 font-extralight text-left   overflow-hidden"
           >
             {product.productDesc}
           </button>
 
           {!product.flavors && (
-            <div className=" flex  items-center  justify-between py-px   rounded-3xl">
+            <div className=" flex  items-center  justify-between py-[1px]   rounded-3xl">
             
               {/* common code start */}
               {product.discountPrice !== undefined &&
               product.discountPrice > 0 ? (
                 <div className="flex justify-between gap-3 items-center">
                   {" "}
-                  <div className="text-sm font-bold text-[#2f2d2b]">{priceDiscounted}</div>
-                  <div className="text-sm line-through  text-[#2f2d2b]">{priceRegular}</div>
+                  <div className="text-md font-bold text-slate-500">{priceDiscounted}</div>
+                  <div className="line-through text-sm text-slate-500">{priceRegular}</div>
                   {" "}
                   </div>
               ) : (
-                <div className="text-sm  text-[#2f2d2b]">{priceRegular}</div>
+                <div className="text-md font-bold text-slate-500">{priceRegular}</div>
               )}
                {/* Cart Button */}
         <div className="w-full flex justify-end ">
